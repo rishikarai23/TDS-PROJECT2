@@ -154,9 +154,19 @@ def generate_barplot(df, barplot_column, output_folder, output_prefix):
 
 # LLM Interaction Functions
 def ask_chatgpt_for_barplot_column(df, filename):
-    """Ask ChatGPT to suggest a column name from the dataset."""
-    columns_list = ", ".join(df.columns)
-    summary_prompt = f"""Dataset loaded: {filename}\nColumns: {columns_list}\nSuggest a single categorical column name suitable for a bar plot."""
+    """Ask ChatGPT to choose a categorical column name from the dataset."""
+    # Extract categorical columns only
+    categorical_columns = df.select_dtypes(include=['object', 'category']).columns.tolist()
+    if not categorical_columns:
+        logging.warning("No categorical columns available for a bar plot.")
+        return None
+
+    # Create the prompt with only categorical columns
+    columns_list = ", ".join(categorical_columns)
+    summary_prompt = (
+        f"""The dataset '{filename}' has the following categorical columns: {columns_list}. """
+        f"""Please suggest one column suitable for creating a bar plot."""
+    )
     return send_to_gpt(summary_prompt)
 
 def send_to_gpt(prompt):
