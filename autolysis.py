@@ -204,13 +204,11 @@ def main():
         return
 
     dataset_path = sys.argv[1]
-    output_folder = sys.argv[2] if len(sys.argv) == 3 else os.path.splitext(dataset_path)[0]
-
+    output_folder = "."
     if not os.path.isfile(dataset_path):
-        logging.error(f"Error: File '{dataset_path}' not found.")
-        return
+    logging.error(f"Error: File '{dataset_path}' not found.")
+    return
 
-    create_output_folder(output_folder)
 
     df = read_csv(dataset_path)
     analysis = analyze_data(df)
