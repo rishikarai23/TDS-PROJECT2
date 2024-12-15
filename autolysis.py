@@ -206,7 +206,7 @@ def main():
     dataset_path = sys.argv[1]
     output_folder = "."
     if not os.path.isfile(dataset_path):
-    logging.error(f"Error: File '{dataset_path}' not found.")
+        logging.error(f"Error: File '{dataset_path}' not found.")
     return
 
 
