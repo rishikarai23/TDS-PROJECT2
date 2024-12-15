@@ -1,12 +1,6 @@
 import os
 import pandas as pd
-try:
-    import seaborn as sns
-except ImportError:
-    import subprocess
-    import sys
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "seaborn"])
-    import seaborn as sns
+import seaborn as sns
 import matplotlib.pyplot as plt
 import requests
 import sys
