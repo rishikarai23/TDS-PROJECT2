@@ -207,7 +207,7 @@ def main():
     output_folder = "."
     if not os.path.isfile(dataset_path):
         logging.error(f"Error: File '{dataset_path}' not found.")
-    return
+        return
 
 
     df = read_csv(dataset_path)
