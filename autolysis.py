@@ -165,7 +165,8 @@ def ask_chatgpt_for_barplot_column(df, filename):
     columns_list = ", ".join(categorical_columns)
     summary_prompt = (
         f"""The dataset '{filename}' has the following categorical columns: {columns_list}. """
-        f"""Please suggest one column suitable for creating a bar plot."""
+        f"""Please suggest one column suitable for creating a bar plot.Also Only anwer with column name no summary or anything.Just Column name from the list."""
+        
     )
     return send_to_gpt(summary_prompt)
 
